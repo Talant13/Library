@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { BsBookmarkStar } from "react-icons/bs";
 import { BsBookmarkStarFill } from "react-icons/bs";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteBook } from "../../redux/books/actionCreators";
-import { toggleFavorite } from "../../redux/books/actionCreators";
+// import { deleteBook } from "../../redux/books/actionCreators";
+// import { toggleFavorite } from "../../redux/books/actionCreators";
+import { deleteBook } from "../../redux/slices/booksSlice";
+import { toggleFavorite } from "../../redux/slices/booksSlice";
 import {
   selectTitleFilter,
   selectAuthorFilter,
