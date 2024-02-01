@@ -4,8 +4,11 @@ import { BsBookmarkStarFill } from "react-icons/bs";
 import { useSelector, useDispatch } from "react-redux";
 // import { deleteBook } from "../../redux/books/actionCreators";
 // import { toggleFavorite } from "../../redux/books/actionCreators";
-import { deleteBook } from "../../redux/slices/booksSlice";
-import { toggleFavorite } from "../../redux/slices/booksSlice";
+import {
+  deleteBook,
+  toggleFavorite,
+  selectBooks,
+} from "../../redux/slices/booksSlice";
 import {
   selectTitleFilter,
   selectAuthorFilter,
@@ -14,7 +17,8 @@ import {
 import "./BookList.css";
 
 const BookList = () => {
-  const books = useSelector((state) => state.books);
+  // const books = useSelector((state) => state.books);
+  const books = useSelector(selectBooks);
   const dispatch = useDispatch();
   const titleFilter = useSelector(selectTitleFilter);
   const authorFilter = useSelector(selectAuthorFilter);
