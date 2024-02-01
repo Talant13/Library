@@ -20,7 +20,6 @@ const BookForm = () => {
     //   id: uuidv4(),
     //   isFavorite: false,
     // };
-
     dispatch(addBook(fullBook));
   };
 
@@ -34,7 +33,6 @@ const BookForm = () => {
       //   author: author,
       //    isFavorite: false,
       // };
-
       dispatch(addBook(book));
 
       setTitle("");
