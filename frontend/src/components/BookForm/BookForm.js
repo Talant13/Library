@@ -1,19 +1,23 @@
 import React, { useState } from "react";
 // import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FaSpinner } from "react-icons/fa";
 // import { v4 as uuidv4 } from "uuid";
 import "./BookForm.css";
 import booksData from "../../data/books.json";
 // import { addBook } from "../../redux/books/actionCreators";
-import { addBook, fetchBook } from "../../redux/slices/booksSlice";
+import {
+  addBook,
+  fetchBook,
+  selectIsLoadingViaAPI,
+} from "../../redux/slices/booksSlice";
 import { setError } from "../../redux/slices/errorSlice";
 import createNewBook from "../../utils/createNewBook";
 
 const BookForm = () => {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const isLoadingViaAPI = useSelector(selectIsLoadingViaAPI);
   const dispatch = useDispatch();
 
   const handleAddRandomBook = () => {
@@ -47,13 +51,8 @@ const BookForm = () => {
     }
   };
 
-  const handleAddRandomBookViaAPI = async () => {
-    try {
-      setIsLoading(true);
-      await dispatch(fetchBook("http://localhost:4000/random-book-delayed"));
-    } finally {
-      setIsLoading(false);
-    }
+  const handleAddRandomBookViaAPI = () => {
+    dispatch(fetchBook("http://localhost:4000/random-book-delayed"));
   };
   return (
     <div className="app-block book-form">
@@ -85,8 +84,8 @@ const BookForm = () => {
         <button
           type="button"
           onClick={handleAddRandomBookViaAPI}
-          disabled={isLoading}>
-          {isLoading ? (
+          disabled={isLoadingViaAPI}>
+          {isLoadingViaAPI ? (
             <>
               <span>Loading...</span>
               <FaSpinner className="spinner" />
